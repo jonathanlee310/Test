@@ -4,6 +4,13 @@ Put a label under `00 Claude/…` on an email. Within the hour a scheduled Claud
 puts the files in Google Drive, leaves a **draft** reply in the thread, and relabels the thread so you can see
 the state at a glance. Claude never sends, files, pays or signs anything. You read the draft and press Send.
 
+## Start here
+
+- `HOW-TO-USE.md`: is it running, start and stop, run now, watch it in real time, logging in.
+- `LABELS.md`: what each label tells Claude to do. Yours to edit; then say: sync LABELS.md to the Playbook.
+- `CONTINUE.md`: pick up the setup and the tests with Claude where we left off.
+- Double-click `run-worker.cmd` (run once, real time), `watch-worker.cmd` (every hour while the window is open) or `open-claude.cmd` (Claude Code in this folder).
+
 ## The big picture
 
 ```

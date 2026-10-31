@@ -13,14 +13,14 @@ Legend: **done** = finished by this session · **manual** = Jonathan must do it 
 | 1 Preflight | done | Gmail, Google Drive and Google Calendar connectors all respond. Git remote confirmed; the repo is public. |
 | 2 Gmail labels | done | First attempt failed (the Gmail grant lacked the label scope). After Jonathan reconnected Gmail with all permissions, all 12 labels were created and coloured with `create_label` on 2026-10-31; ids below. |
 | 3 Drive layout | done (one manual item) | `Inbox`, `Outbox`, `Log` and the Google Doc `Playbook` created under `00 Claude`; the Playbook doc was re-created with the label ids once the labels existed (the Drive connector cannot edit a doc in place); ids below. Manual: make Google Drive for desktop sync `00 Claude` and confirm the local path. |
-| 4 Repo documents | done | `README.md`, `docs/01-architecture.md`, `docs/02-playbook.md`, `docs/03-routine-prompt-cloud.md`, `docs/04-routine-prompt-desktop.md`, `docs/05-setup-checklist.md`, `docs/06-manage-jobs.md`. |
-| 5.1 Cloud routine | done | Routine **"00 Claude — Gmail label worker"** created: hourly at :05 UTC, fresh cloud session each run, model Opus 5.5, connectors Gmail + Google-Drive + Google-Calendar, prompt = `docs/03-routine-prompt-cloud.md` verbatim. Id `trig_01HU9VtehUJKPE8BxHXrpVdr`. Runs with the PC off. Manage, pause or change the schedule at https://claude.ai/code/routines/trig_01HU9VtehUJKPE8BxHXrpVdr PAUSED (enabled = false) at 18:58 UTC on 2026-10-31 for the Phase 6 tests so the hourly run does not grab the test emails; re-enable when the tests are done. |
+| 4 Repo documents | done | `README.md`, `docs/01` to `docs/06`; added 2026-10-31 evening: `HOW-TO-USE.md` (operating guide), `LABELS.md` (per-label instructions Jonathan edits), `CONTINUE.md` (handoff), launchers `run-worker.cmd`, `watch-worker.cmd`, `open-claude.cmd`. |
+| 5.1 Cloud routine | done | Routine **"00 Claude — Gmail label worker"** created: hourly at :05 UTC, fresh cloud session each run, model Opus 5.5, connectors Gmail + Google-Drive + Google-Calendar, prompt = `docs/03-routine-prompt-cloud.md` verbatim. Id `trig_01HU9VtehUJKPE8BxHXrpVdr`. Runs with the PC off. Manage, pause or change the schedule at https://claude.ai/code/routines/trig_01HU9VtehUJKPE8BxHXrpVdr Paused 18:58 to 23:38 UTC on 2026-10-31 (test window), then re-enabled: ON. Claude pauses it again only while running the Phase 6 tests. |
 | 5.2 Desktop worker | **manual** | Needs the Claude desktop app on this PC; steps below. |
-| 5.3 Command-line mode | done | Instructions below and in README. |
+| 5.3 Command-line mode | done | Launchers in the folder: `run-worker.cmd` (one run, real time; a one-shot claude -p call was verified from this folder on 2026-10-31), `watch-worker.cmd` (hourly loop while open), `open-claude.cmd`. Details in HOW-TO-USE.md. |
 | 6.1 Smoke test | done | See "Test results". |
-| 6.2 End to end | waiting | Needs the labels plus one bank-statement email from Jonathan. |
-| 6.3 Safety | waiting | Needs the labels. |
-| 6.4 Flexibility | waiting | Needs the labels. Note: the Drive connector cannot edit a Google Doc's text (`update_file` is metadata only), so the "Status = off" test will be done by creating a replacement Playbook doc and renaming the old one; nothing is deleted. |
+| 6.2 End to end | waiting | Labels exist now. Needs the four test emails listed in CONTINUE.md; deferred while Jonathan writes LABELS.md. |
+| 6.3 Safety | waiting | Deferred with 6.2 (same test emails). |
+| 6.4 Flexibility | waiting | Deferred with 6.2. Test label 00 Claude/Hello (Label_132) already exists. Playbook edits for the test are done by re-creating the Google Doc (connector cannot edit in place). |
 | 7 Commit and push | done | Pushed to `origin/claude/wonderful-curie-g7sxtq`. Will be pushed again after the label steps. |
 
 ## Ids discovered
@@ -78,9 +78,9 @@ Google Drive for desktop is already running on this PC, but the Drive folder 00 
 | 2.x create_label after reconnect | PASS: 12 labels created and coloured in one go (Label_120 to Label_131); test label 00 Claude/Hello also created for test 6.4. |
 | 6.1 Smoke (this session) | PASS: both search syntaxes (hyphenated and quoted) returned zero threads; the worker answers "No items."; nothing changed in Gmail or Drive. |
 | 6.1 Smoke (cloud routine, first scheduled fire 2026-10-31 14:05 UTC) | PASS: fired 14:05:39 UTC, session cse_019v5M4UifSLAT9DkN2LdHGy, 32 s, 11 turns; cloned the repo, read the Playbook doc, called list_labels, ran both search syntaxes (zero results), sent a push notification that the sub-labels are missing, answered "No items."; nothing changed in Gmail or Drive. |
-| 6.2 End to end | not run yet (needs labels and a bank-statement email) |
-| 6.3 Safety | not run yet (needs labels) |
-| 6.4 Flexibility | not run yet (needs labels) |
+| 6.2 End to end | deferred (2026-10-31 evening); test emails listed in CONTINUE.md |
+| 6.3 Safety | deferred with 6.2 |
+| 6.4 Flexibility | deferred with 6.2 |
 
 ## Known limitations found during setup
 - Gmail connector: the original grant had no label-management permission (create_label, update_label failed). Fixed on 2026-10-31 by reconnecting Gmail at claude.ai/customize/connectors with all permissions; all label tools work now.
