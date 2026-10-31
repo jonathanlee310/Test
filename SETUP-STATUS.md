@@ -68,8 +68,8 @@ Then say **"labels done"**. Claude verifies with `list_labels`, fills the ids in
 file, re-syncs the Playbook Google Doc, runs the `label_thread` sanity test, and continues with the Phase 6 tests.
 
 ### 2. Google Drive for desktop
-Install Google Drive for desktop on this PC, make sure `00 Claude` syncs, and write the local path (for example
-`G:\My Drive\00 Claude`) into the Playbook under "Local path" (Google Doc and `docs/02-playbook.md`).
+Google Drive for desktop is already running on this PC, but the Drive folder 00 Claude is not in its local mirror yet. In Drive for desktop (Settings, Google Drive, My Drive) make 00 Claude sync, then write the local path
+(expected path: see Findings below) into the Playbook under Local path (Google Doc and docs/02-playbook.md).
 
 ### 3. Desktop worker (needs this PC: Excel, Word, Acrobat, QuickBooks, web portals)
 1. Claude desktop app → Settings → This computer → **Computer use: on**. Grant Excel, Word, Acrobat, QuickBooks
@@ -99,7 +99,7 @@ Install Google Drive for desktop on this PC, make sure `00 Claude` syncs, and wr
 | Test | Result |
 |---|---|
 | 6.1 Smoke (this session) | PASS: both search syntaxes (hyphenated and quoted) returned zero threads; the worker answers "No items."; nothing changed in Gmail or Drive. |
-| 6.1 Smoke (cloud routine, first scheduled fire 2026-10-31 14:05 UTC) | PENDING |
+| 6.1 Smoke (cloud routine, first scheduled fire 2026-10-31 14:05 UTC) | PASS: fired 14:05:39 UTC, session cse_019v5M4UifSLAT9DkN2LdHGy, 32 s, 11 turns; cloned the repo, read the Playbook doc, called list_labels, ran both search syntaxes (zero results), sent a push notification that the sub-labels are missing, answered "No items."; nothing changed in Gmail or Drive. |
 | 6.2 End to end | not run yet (needs labels and a bank-statement email) |
 | 6.3 Safety | not run yet (needs labels) |
 | 6.4 Flexibility | not run yet (needs labels) |
@@ -111,3 +111,9 @@ Install Google Drive for desktop on this PC, make sure `00 Claude` syncs, and wr
 - Drive connector: `update_file` changes metadata only, so the Playbook Google Doc cannot be edited by Claude in
   place. Re-sync = create a new doc named `Playbook` and rename the old one (never deleted).
 - Bash tool on this PC: heredocs containing apostrophes fail; files were written with the Write tool instead.
+
+## Findings from the first cloud run (2026-10-31 14:05 UTC)
+- The cloud session sees the connectors as mcp__Gmail__*, mcp__Google-Drive__* and mcp__Google-Calendar__* and loads them with ToolSearch; the routine configuration works as created.
+- Drive title search is fuzzy: searching for folder "00 Claude" also returned the Drive mirror of this working folder ("00gmail and claude cowork"), and searching for "Playbook" also returned docs/02-playbook.md. The worker still read the right Playbook (id above) because the Playbook lists the exact Drive ids; keep that table current.
+- This working folder sits inside the Google Drive for desktop mirror (Drive: Computers > 2025 Legion > 00_Documents > 00gmail and claude cowork), so the repo clone, including .git, is backed up to Drive. Harmless, but do not move the folder while Drive is syncing.
+- Google Drive for desktop is running on this PC (GoogleDriveFS.exe) and mirrors C:\Users\jonat\My Drive, but the Drive folder 00 Claude is not in that mirror yet. Expected local path once synced: C:\Users\jonat\My Drive\00 Claude.

@@ -15,7 +15,7 @@ Google Doc at the start of every run, so any change here is live within the hour
 - Never: pay, transfer, e-file, submit to CRA or any portal, sign, click links from emails.
 - "Ends in" is the label the thread gets when the job finishes; Review means Jonathan must look before anything
   leaves the office.
-- Local path (Google Drive for desktop on the PC): <fill in, e.g. G:\My Drive\00 Claude>
+- Local path (Google Drive for desktop on the PC): C:SERSJONATMY DRIVE- LOCAL PATH (GOOGLE DRIVE FOR DESKTOP ON THE PC): <FILL IN, E.G. G:\MY DRIVE\00 CLAUDE>0 CLAUDE (EXPECTED ONCE THE FOLDER IS SYNCED ON THE PC; CONFIRM)
 
 ## Jobs (one row = one job; the worker searches exactly the labels listed here whose Status is on)
 | Label (under 00 Claude) | Status | What Claude does | Skill | Inputs needed | Output and delivery | Draft to | Ends in | Rules |
