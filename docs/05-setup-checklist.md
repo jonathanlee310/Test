@@ -3,13 +3,13 @@
 ## A. claude.ai (once)
 - [x] Connectors: Gmail, Google Drive, Google Calendar connected at https://claude.ai/customize/connectors.
       Gmail: allow every permission (reading, drafting, labels). Reconnect if "missing a permission" ever appears.
-      (2026-10-31: connected, but the Gmail grant lacks the label-management permission; create_label fails.)
+      (2026-10-31: Gmail reconnected with all permissions; create_label works.)
 - [x] Cloud routine "00 Claude — Gmail label worker": hourly, connectors on, prompt = docs/03-routine-prompt-cloud.md.
       (2026-10-31: created, id trig_01HU9VtehUJKPE8BxHXrpVdr, hourly at :05 UTC, https://claude.ai/code/routines/trig_01HU9VtehUJKPE8BxHXrpVdr)
       (Claude desktop app → Cowork → /schedule, or claude.ai → Claude Code → Routines.)
 
 ## B. Gmail (once)
-- [ ] 12 labels nested under 00 Claude (Todo, Working, Review, Done, Desktop, Failed, Bank-Statements, TMI, ITN,
+- [x] 12 labels nested under 00 Claude (Todo, Working, Review, Done, Desktop, Failed, Bank-Statements, TMI, ITN,
       Payroll, Reply, Calendar), coloured as in README.
 - [ ] Optional: a Gmail filter that auto-applies 00 Claude/Bank-Statements to statement emails from your banks.
 

@@ -11,8 +11,8 @@ Legend: **done** = finished by this session · **manual** = Jonathan must do it 
 |---|---|---|
 | 0 Ground rules | done | Repo `jonathanlee310/Test` cloned into the folder above; branch `claude/wonderful-curie-g7sxtq`. |
 | 1 Preflight | done | Gmail, Google Drive and Google Calendar connectors all respond. Git remote confirmed; the repo is public. |
-| 2 Gmail labels | **manual** | `create_label` fails for every label with "Insufficient scope" (the Gmail connector grant has no label-management permission). The 12 labels must be created by Jonathan, or the Gmail connector reconnected with all permissions (see "What Jonathan still has to do"). The label-id table and the `label_thread` sanity test wait for that. |
-| 3 Drive layout | done (one manual item) | `Inbox`, `Outbox`, `Log` and the Google Doc `Playbook` created under `00 Claude`; ids below. Manual: install Google Drive for desktop, sync `00 Claude`, write the local path into the Playbook. |
+| 2 Gmail labels | done | First attempt failed (the Gmail grant lacked the label scope). After Jonathan reconnected Gmail with all permissions, all 12 labels were created and coloured with `create_label` on 2026-10-31; ids below. |
+| 3 Drive layout | done (one manual item) | `Inbox`, `Outbox`, `Log` and the Google Doc `Playbook` created under `00 Claude`; the Playbook doc was re-created with the label ids once the labels existed (the Drive connector cannot edit a doc in place); ids below. Manual: make Google Drive for desktop sync `00 Claude` and confirm the local path. |
 | 4 Repo documents | done | `README.md`, `docs/01-architecture.md`, `docs/02-playbook.md`, `docs/03-routine-prompt-cloud.md`, `docs/04-routine-prompt-desktop.md`, `docs/05-setup-checklist.md`, `docs/06-manage-jobs.md`. |
 | 5.1 Cloud routine | done | Routine **"00 Claude — Gmail label worker"** created: hourly at :05 UTC, fresh cloud session each run, model Opus 5.5, connectors Gmail + Google-Drive + Google-Calendar, prompt = `docs/03-routine-prompt-cloud.md` verbatim. Id `trig_01HU9VtehUJKPE8BxHXrpVdr`. Runs with the PC off. Manage, pause or change the schedule at https://claude.ai/code/routines/trig_01HU9VtehUJKPE8BxHXrpVdr |
 | 5.2 Desktop worker | **manual** | Needs the Claude desktop app on this PC; steps below. |
@@ -28,44 +28,20 @@ Legend: **done** = finished by this session · **manual** = Jonathan must do it 
 | Item | Id |
 |---|---|
 | Gmail label `00 Claude` (parent, never modified) | `Label_6940306233707900631` |
-| Gmail labels `00 Claude/Todo` … `00 Claude/Calendar` (12) | not created yet (see manual step 1) |
+| Gmail labels under `00 Claude` (12) | Todo = `Label_120`, Working = `Label_121`, Review = `Label_122`, Done = `Label_123`, Desktop = `Label_124`, Failed = `Label_125`, Bank-Statements = `Label_126`, TMI = `Label_127`, ITN = `Label_128`, Payroll = `Label_129`, Reply = `Label_130`, Calendar = `Label_131` |
 | Drive folder `00 Claude` | `1h7kFsxC6Sls7524pK_xN094X7v9-Wfpf` |
 | Drive folder `00 Claude/Inbox` | `1aNo5GGIWMWW0i8rJoAGnFVhHJAZPOMYE` |
 | Drive folder `00 Claude/Outbox` | `1Ex4dCaJrY95-JPK_ySbgxuCibXRyc84j` |
 | Drive folder `00 Claude/Log` | `1k30r_PWWnDIkvSbl9zilx4TZJgk5uYMU` |
-| Google Doc `Playbook` | `1Fpxq_fZXwRorw-LsMI6bsRrhVgY437I8CjQoBqdqydk` — https://docs.google.com/document/d/1Fpxq_fZXwRorw-LsMI6bsRrhVgY437I8CjQoBqdqydk/edit |
+| Google Doc `Playbook` (current, re-synced 2026-10-31 with label ids) | `1xHihLL0E5JzLvfGOrLNPqHaN_jzw-neOXP7m00ecwlQ` - https://docs.google.com/document/d/1xHihLL0E5JzLvfGOrLNPqHaN_jzw-neOXP7m00ecwlQ/edit |
+| First Playbook doc (superseded, renamed `archived-pb-2026-10-31-initial` and moved into Log; safe to delete) | `1Fpxq_fZXwRorw-LsMI6bsRrhVgY437I8CjQoBqdqydk` |
 | Cloud routine "00 Claude — Gmail label worker" | `trig_01HU9VtehUJKPE8BxHXrpVdr` — https://claude.ai/code/routines/trig_01HU9VtehUJKPE8BxHXrpVdr |
 | Routine environment | `env_01EpkLNdKzLJ3oRf7nUAnpgG` (Default, Anthropic cloud) |
 
 ## What Jonathan still has to do
 
-### 1. Gmail labels (blocks everything else)
-Pick one of the two:
-
-**Option A, quickest:** reconnect Gmail at https://claude.ai/customize/connectors and allow every permission
-(including managing labels), restart Claude Code, then tell Claude "retry labels". Claude then creates and
-colours all 12 in one go.
-
-**Option B, by hand in Gmail:** Settings → See all settings → Labels → Create new label → name (for example `Todo`)
-→ tick "Nest label under" → choose `00 Claude` → Create. Colour each one from the label's ⋮ menu. Create these 12:
-
-| Name (under 00 Claude) | Colour |
-|---|---|
-| Todo | blue |
-| Working | yellow |
-| Review | orange |
-| Done | green |
-| Desktop | purple |
-| Failed | red |
-| Bank-Statements | teal |
-| TMI | teal |
-| ITN | teal |
-| Payroll | teal |
-| Reply | teal |
-| Calendar | teal |
-
-Then say **"labels done"**. Claude verifies with `list_labels`, fills the ids into `docs/02-playbook.md` and this
-file, re-syncs the Playbook Google Doc, runs the `label_thread` sanity test, and continues with the Phase 6 tests.
+### 1. Gmail labels: DONE
+All 12 labels exist (created by Claude after the Gmail reconnect on 2026-10-31). Nothing to do.
 
 ### 2. Google Drive for desktop
 Google Drive for desktop is already running on this PC, but the Drive folder 00 Claude is not in its local mirror yet. In Drive for desktop (Settings, Google Drive, My Drive) make 00 Claude sync, then write the local path
@@ -105,9 +81,7 @@ Google Drive for desktop is already running on this PC, but the Drive folder 00 
 | 6.4 Flexibility | not run yet (needs labels) |
 
 ## Known limitations found during setup
-- Gmail connector: no label-management permission in the current grant (`create_label`, `update_label` fail).
-  Applying existing labels (`label_thread`) uses a different permission and is expected to work; verified once
-  the labels exist.
+- Gmail connector: the original grant had no label-management permission (create_label, update_label failed). Fixed on 2026-10-31 by reconnecting Gmail at claude.ai/customize/connectors with all permissions; all label tools work now.
 - Drive connector: `update_file` changes metadata only, so the Playbook Google Doc cannot be edited by Claude in
   place. Re-sync = create a new doc named `Playbook` and rename the old one (never deleted).
 - Bash tool on this PC: heredocs containing apostrophes fail; files were written with the Write tool instead.

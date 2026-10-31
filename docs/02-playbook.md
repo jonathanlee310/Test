@@ -1,6 +1,6 @@
 # 00 Claude Playbook
 
-Last changed: 2026-10-31 by Claude Code (initial setup)   (update this line at every edit; the worker quotes it in each run summary)
+Last changed: 2026-10-31 by Claude Code (labels created, ids filled)   (update this line at every edit; the worker quotes it in each run summary)
 
 Runtime copy: Google Doc "Playbook" in Drive folder "00 Claude". This file is the master. After editing it, paste
 the whole file into the Google Doc (or ask Claude: "sync the Playbook to Drive"). The hourly worker reads the
@@ -64,18 +64,18 @@ C. For one email only: reply to yourself in the thread with a line starting "Cla
 | Label | Id |
 |---|---|
 | 00 Claude (parent, do not touch) | Label_6940306233707900631 |
-| 00 Claude/Todo | <id> |
-| 00 Claude/Working | <id> |
-| 00 Claude/Review | <id> |
-| 00 Claude/Done | <id> |
-| 00 Claude/Desktop | <id> |
-| 00 Claude/Failed | <id> |
-| 00 Claude/Bank-Statements | <id> |
-| 00 Claude/TMI | <id> |
-| 00 Claude/ITN | <id> |
-| 00 Claude/Payroll | <id> |
-| 00 Claude/Reply | <id> |
-| 00 Claude/Calendar | <id> |
+| 00 Claude/Todo | Label_120 |
+| 00 Claude/Working | Label_121 |
+| 00 Claude/Review | Label_122 |
+| 00 Claude/Done | Label_123 |
+| 00 Claude/Desktop | Label_124 |
+| 00 Claude/Failed | Label_125 |
+| 00 Claude/Bank-Statements | Label_126 |
+| 00 Claude/TMI | Label_127 |
+| 00 Claude/ITN | Label_128 |
+| 00 Claude/Payroll | Label_129 |
+| 00 Claude/Reply | Label_130 |
+| 00 Claude/Calendar | Label_131 |
 
 ## Drive ids
 | Item | Id |
@@ -84,4 +84,4 @@ C. For one email only: reply to yourself in the thread with a line starting "Cla
 | Inbox | 1aNo5GGIWMWW0i8rJoAGnFVhHJAZPOMYE |
 | Outbox | 1Ex4dCaJrY95-JPK_ySbgxuCibXRyc84j |
 | Log | 1k30r_PWWnDIkvSbl9zilx4TZJgk5uYMU |
-| Playbook (Google Doc) | 1Fpxq_fZXwRorw-LsMI6bsRrhVgY437I8CjQoBqdqydk |
+| Playbook (Google Doc) | 1xHihLL0E5JzLvfGOrLNPqHaN_jzw-neOXP7m00ecwlQ |
