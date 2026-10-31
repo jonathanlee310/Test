@@ -14,7 +14,7 @@ Legend: **done** = finished by this session · **manual** = Jonathan must do it 
 | 2 Gmail labels | done | First attempt failed (the Gmail grant lacked the label scope). After Jonathan reconnected Gmail with all permissions, all 12 labels were created and coloured with `create_label` on 2026-10-31; ids below. |
 | 3 Drive layout | done (one manual item) | `Inbox`, `Outbox`, `Log` and the Google Doc `Playbook` created under `00 Claude`; the Playbook doc was re-created with the label ids once the labels existed (the Drive connector cannot edit a doc in place); ids below. Manual: make Google Drive for desktop sync `00 Claude` and confirm the local path. |
 | 4 Repo documents | done | `README.md`, `docs/01-architecture.md`, `docs/02-playbook.md`, `docs/03-routine-prompt-cloud.md`, `docs/04-routine-prompt-desktop.md`, `docs/05-setup-checklist.md`, `docs/06-manage-jobs.md`. |
-| 5.1 Cloud routine | done | Routine **"00 Claude — Gmail label worker"** created: hourly at :05 UTC, fresh cloud session each run, model Opus 5.5, connectors Gmail + Google-Drive + Google-Calendar, prompt = `docs/03-routine-prompt-cloud.md` verbatim. Id `trig_01HU9VtehUJKPE8BxHXrpVdr`. Runs with the PC off. Manage, pause or change the schedule at https://claude.ai/code/routines/trig_01HU9VtehUJKPE8BxHXrpVdr |
+| 5.1 Cloud routine | done | Routine **"00 Claude — Gmail label worker"** created: hourly at :05 UTC, fresh cloud session each run, model Opus 5.5, connectors Gmail + Google-Drive + Google-Calendar, prompt = `docs/03-routine-prompt-cloud.md` verbatim. Id `trig_01HU9VtehUJKPE8BxHXrpVdr`. Runs with the PC off. Manage, pause or change the schedule at https://claude.ai/code/routines/trig_01HU9VtehUJKPE8BxHXrpVdr PAUSED (enabled = false) at 18:58 UTC on 2026-10-31 for the Phase 6 tests so the hourly run does not grab the test emails; re-enable when the tests are done. |
 | 5.2 Desktop worker | **manual** | Needs the Claude desktop app on this PC; steps below. |
 | 5.3 Command-line mode | done | Instructions below and in README. |
 | 6.1 Smoke test | done | See "Test results". |
@@ -74,6 +74,8 @@ Google Drive for desktop is already running on this PC, but the Drive folder 00 
 
 | Test | Result |
 |---|---|
+| 2.5 label_thread sanity | PASS: applied the parent label id to a thread that already carried it (no-op); the call succeeded, nothing changed. |
+| 2.x create_label after reconnect | PASS: 12 labels created and coloured in one go (Label_120 to Label_131); test label 00 Claude/Hello also created for test 6.4. |
 | 6.1 Smoke (this session) | PASS: both search syntaxes (hyphenated and quoted) returned zero threads; the worker answers "No items."; nothing changed in Gmail or Drive. |
 | 6.1 Smoke (cloud routine, first scheduled fire 2026-10-31 14:05 UTC) | PASS: fired 14:05:39 UTC, session cse_019v5M4UifSLAT9DkN2LdHGy, 32 s, 11 turns; cloned the repo, read the Playbook doc, called list_labels, ran both search syntaxes (zero results), sent a push notification that the sub-labels are missing, answered "No items."; nothing changed in Gmail or Drive. |
 | 6.2 End to end | not run yet (needs labels and a bank-statement email) |
