@@ -49,3 +49,8 @@ Last session: 2026-10-31, Claude Code in this folder. Everything is saved and pu
   prose, Python with `chr(92)` for Windows paths.
 - Rules from `IMPLEMENT.md` still apply: never send email, never trash, archive or delete anything in Gmail or
   Drive, never touch the parent label `00 Claude` or its 9 messages, stop only at the STOP points.
+
+## Conversation logs
+- `conversation/2026-10-31-session-3ee5c7c7.md`: readable log of the setup session (Jonathan and Claude messages in order; tool outputs omitted).
+- `conversation/raw/`: the full raw transcripts (JSONL), kept out of GitHub by .gitignore because they contain mailbox data.
+- To refresh the log after more work: ask Claude "export the conversation to the folder". To reopen a session in full: `claude --resume <session id>` (the id is in the log header).
